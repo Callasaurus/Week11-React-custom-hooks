@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function useRandomImage() {
   const [image, setImage] = useState(null);
@@ -8,6 +8,10 @@ function useRandomImage() {
       .then(res => res.url)
       .then(url => setImage(url));
   };
+
+  useEffect(() => {
+    fetchRandomImage();
+  }, []);
 
   return [image, fetchRandomImage];
 };
